@@ -1,0 +1,28 @@
+{
+  "name": "csv-import",
+  "version": "1.0.0",
+  "description": "<aside>\r 📚 nome repo: **csv-import**",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danieleBattistelli/csv-import.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/danieleBattistelli/csv-import/issues"
+  },
+  "homepage": "https://github.com/danieleBattistelli/csv-import#readme",
+  "dependencies": {
+    "csv-parser": "^3.2.0",
+    "express": "^5.1.0",
+    "multer": "^2.0.1",
+    "mysql2": "^3.14.1"
+  }
+}

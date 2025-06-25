@@ -1,0 +1,47 @@
+name,barcode,brand,category,quantity,weight,price
+Smartphone X1,9876543210128,TechPro,Elettronica,15,0.35,499.99
+T-shirt Cotone Nero,9876543210127,FashionLab,Abbigliamento,50,0.2,19.99
+Lampada da Tavolo LED,9876543210126,LightHome,Arredamento,20,1.2,
+Scarpe Running Uomo,9876543210125,SportStep,Sport,30,0.85,59.99
+Caffè in Grani 1kg,9876543210124,GoodBrew,Alimentari,100,1.0,8.99
+Frigorifero Slim,9876543210123,CoolHouse,Casa,5,80.5,899.00
+Pantaloni Jeans Slim,9876543210122,FashionLab,Abbigliamento,40,0.6,39.99
+Cuffie Wireless,9876543210121,TechPro,Elettronica,25,0.25,
+Zaino Sportivo,9876543210119,SportStep,Sport,35,0.9,29.99
+Passata di Pomodoro 800g,9876543210118,FreshFood,Alimentari,200,0.8,2.49
+Smartwatch Fitness,9876543210117,TechPro,Elettronica,18,0.05,89.99
+Camicia Uomo Oxford,9876543210116,FashionLab,Abbigliamento,60,0.3,49.99
+Tavolino da Salotto,9876543210115,LightHome,Arredamento,7,15.0,
+Borraccia Isotermica,9876543210114,SportStep,Sport,45,0.4,14.99
+Detergente Multiuso 1L,9876543210113,CleanWorld,Casa,150,1.0,5.99
+Laptop UltraThin,9876543210112,TechPro,Elettronica,10,1.4,1199.00
+Piumino Letto Singolo,9876543210111,SleepWell,Casa,25,2.0,45.00
+Orecchini Argento Donna,9876543210110,JewelStyle,Accessori,80,0.01,34.99
+Batterie AA Ricaricabili,9876543210109,PowerCell,Elettronica,200,0.02,9.99
+Pantaloncini Sportivi Uomo,9876543210108,SportStep,Sport,70,0.25,
+Set Piatti Ceramica 4pz,9876543210107,TableStyle,Casa,30,3.5,39.99
+Tenda da Sole Esterna,9876543210106,OutdoorLife,Arredamento,10,5.0,149.99
+Televisore 4K 55",9876543210105,TechPro,Elettronica,8,22.3,799.99
+Cappello Estivo Donna,9876543210104,FashionLab,Abbigliamento,90,0.1,12.99
+Borsa a Tracolla Pelle,9876543210103,JewelStyle,Accessori,35,0.8,89.99
+Cintura in Vera Pelle,9876543210102,FashionLab,Abbigliamento,120,0.4,29.99
+Bicchiere Termico Travel,9876543210101,DrinkGo,Casa,150,0.3,10.99
+Sistema Home Cinema,9876543210100,TechPro,Elettronica,6,12.0,
+Telo Mare Microfibra,9876543210099,SportStep,Sport,60,0.5,19.99
+Tastiera Wireless Retroilluminata,9876543210098,TechPro,Elettronica,20,0.7,69.99
+Pantaloni Yoga Donna,9876543210097,SportStep,Sport,50,0.3,34.99
+Portafoglio Uomo Pelle,9876543210096,JewelStyle,Accessori,100,0.2,39.99
+Tuta Sci Uomo,9876543210095,SportStep,Sport,15,1.1,
+Asciugamani Spugna 2pz,9876543210094,SleepWell,Casa,80,0.9,24.99
+Materasso Singolo Memory Foam,9876543210093,SleepWell,Casa,5,15.0,199.99
+Giacca Antipioggia Uomo,9876543210092,SportStep,Sport,25,0.8,69.99
+Tapis Roulant Elettrico,9876543210091,SportStep,Sport,3,55.0,
+Candele Profumate Set 3pz,9876543210090,LightHome,Arredamento,70,0.2,12.00
+Calze Cotone Pack 5pz,9876543210089,FashionLab,Abbigliamento,300,0.1,7.99
+Lavatrice 8kg,9876543210088,CleanWorld,Casa,4,62.0,499.99
+Mouse Gaming RGB,9876543210087,TechPro,Elettronica,40,0.15,39.99
+Borsone Weekender,9876543210086,SportStep,Sport,20,0.7,49.99
+Cuscino Decorativo 40x40,9876543210085,LightHome,Arredamento,50,0.3,14.99
+Pasta Integrale 500g,9876543210084,FreshFood,Alimentari,120,0.5,1.99
+Olio Extra Vergine d'Olive 1L,9876543210083,FreshFood,Alimentari,90,1.0,7.99
+Biscotti Integrali 300g,9876543210082,FreshFood,Alimentari,150,0.3,
