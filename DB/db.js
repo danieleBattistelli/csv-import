@@ -26,6 +26,22 @@ async function createTable() {
     conn.release();
 }
 
+// Funzione per creare la tabella 'price'
+async function createPriceTable() {
+    const connection = await pool.getConnection();
+    try {
+        await connection.query(`
+            CREATE TABLE IF NOT EXISTS price (
+                id INT AUTO_INCREMENT PRIMARY KEY,
+                name VARCHAR(50),
+                price DECIMAL(10,2)
+            )
+        `);
+    } finally {
+        connection.release();
+    }
+}
+
 async function insertRecord(record) {
     const sql = `INSERT INTO records (name, barcode, brand, category, quantity, weight, price) VALUES (?, ?, ?, ?, ?, ?, ?)`;
     const conn = await pool.getConnection();
@@ -41,4 +57,17 @@ async function insertRecord(record) {
     conn.release();
 }
 
-module.exports = { pool, createTable, insertRecord };
+// Funzione per inserire un record nella tabella 'price'
+async function insertPriceRecord(record) {
+    const connection = await pool.getConnection();
+    try {
+        await connection.query(
+            'INSERT INTO price (name, price) VALUES (?, ?)',
+            [record.name, record.price]
+        );
+    } finally {
+        connection.release();
+    }
+}
+
+module.exports = { pool, createTable, insertRecord, createPriceTable, insertPriceRecord };
