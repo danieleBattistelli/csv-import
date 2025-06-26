@@ -1,35 +1,40 @@
-# csv-import
-<aside>
-📚 nome repo: **csv-import**
+# 📦 CSV Import
 
-Questo kata si può svolgere da due prospettive: **backend** o **frontend**, sentitevi liberi di scegliere quale parte fare.
+Benvenuto in **CSV Import**!
 
-### ⚙️ Backend
+Un progetto semplice e potente per importare, visualizzare e gestire file CSV in modo rapido e intuitivo. Perfetto per chi vuole trasformare dati grezzi in informazioni utili senza complicazioni.
 
-Creare una tabella in MySQL, leggere ed importare i dati dal file CSV.
+## 🚀 Funzionalità principali
+- Caricamento file CSV tramite interfaccia web
+- Visualizzazione tabellare dei dati
+- Gestione e salvataggio su database locale
+- Interfaccia moderna e user-friendly
 
-**✨ Bonus:** importare soltanto le righe che hanno il prezzo.
+## 💡 Perché usarlo?
+- Risparmia tempo nell’importazione dei dati
+- Nessuna configurazione complessa
+- Ideale per studenti, sviluppatori e chiunque lavori con dati CSV
 
-### 🖥️ Frontend
+## 🛠️ Installazione
 
-Realizzare una pagina web che permetta all'utente di caricare un file CSV e visualizzare in una tabella le righe presenti nel file.
+1. Clona il repository:
+   ```bash
+   git clone https://github.com/tuo-username/csv-import.git
+   ```
+2. Installa le dipendenze:
+   ```bash
+   npm install
+   ```
 
-**✨ Bonus:** aggiungere un pulsante per attivare/disattivare la visualizzazione solo dei prodotti con il prezzo presente.
+## ▶️ Utilizzo
 
-Non vengono forniti vincoli tecnologici, né librerie specifiche: siete invitati a scegliere autonomamente gli strumenti più appropriati. 
+1. Avvia l'applicazione:
+   ```bash
+   node app.js
+   ```
+2. Apri il browser e vai su `http://localhost:3000` (o la porta specificata nel progetto).
+3. Carica il tuo file CSV e inizia a gestire i dati!
 
-</aside>
+---
 
-### Materiale aggiuntivo
-
-- **prodotti.csv**
-    
-    
-    
-
-## Suggerimenti per lo sviluppo
-
-- Puoi utilizzare un client per la gestione del database
-- Organizza cartelle e file del tuo progetto in modo logico: ad es. tieni i file csv in una cartella separata e le configurazioni in un file a parte
-- Occhio alla prima riga di intestazione: va saltata
-- Presta attenzione alla sicurezza: considera l'utilizzo di prepared statements per eseguire le queries a database
+> **Provalo subito e semplifica la gestione dei tuoi dati!**

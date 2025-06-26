@@ -1,39 +1,43 @@
+// Importa il modulo mysql2/promise per la connessione asincrona a MySQL
 const mysql = require('mysql2/promise');
 
-// Configura i parametri di connessione secondo il tuo ambiente
+// Crea un pool di connessioni al database MySQL
+// Modifica i parametri secondo la tua configurazione locale
 const pool = mysql.createPool({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
-    database: 'csv_import'
+    host: 'localhost', // Indirizzo del server MySQL
+    user: 'root',      // Nome utente
+    password: 'root',  // Password
+    database: 'csv_import' // Nome del database
 });
 
-// Funzione per creare la tabella 'price'
+// Funzione asincrona per creare la tabella 'price' se non esiste già
 async function createPriceTable() {
-    const connection = await pool.getConnection();
+    const connection = await pool.getConnection(); // Ottieni una connessione dal pool
     try {
         await connection.query(`
             CREATE TABLE IF NOT EXISTS price (
-                name VARCHAR(50),
-                price DECIMAL(10,2)
+                name VARCHAR(50),      -- Nome del prodotto (max 50 caratteri)
+                price DECIMAL(10,2)    -- Prezzo con 2 decimali
             )
         `);
     } finally {
-        connection.release();
+        connection.release(); // Rilascia la connessione al pool
     }
 }
 
-// Funzione per inserire un record nella tabella 'price'
+// Funzione asincrona per inserire un record nella tabella 'price'
+// Accetta un oggetto { name, price }
 async function insertPriceRecord(record) {
-    const connection = await pool.getConnection();
+    const connection = await pool.getConnection(); // Ottieni una connessione dal pool
     try {
         await connection.query(
-            'INSERT INTO price (name, price) VALUES (?, ?)',
+            'INSERT INTO price (name, price) VALUES (?, ?)', // Query parametrica per sicurezza
             [record.name, record.price]
         );
     } finally {
-        connection.release();
+        connection.release(); // Rilascia la connessione al pool
     }
 }
 
+// Esporta il pool e le funzioni per l'uso in altri file
 module.exports = { pool, createPriceTable, insertPriceRecord };

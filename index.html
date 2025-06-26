@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="style.css">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Axios CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body>
@@ -26,7 +28,7 @@
         </div>
     </div>
     <script>
-        // Mostra il nome del file selezionato (opzionale)
+        // Mostra il nome del file selezionato
         const fileInput = document.getElementById('csvFile');
         const label = document.querySelector('label[for="csvFile"]');
         fileInput.addEventListener('change', function () {
@@ -37,43 +39,56 @@
             }
         });
 
-        // Gestione invio form via fetch API
+        // Gestione invio form via axios
         const form = document.getElementById('uploadForm');
         form.addEventListener('submit', async function (e) {
             e.preventDefault();
             const formData = new FormData(form);
             try {
-                const response = await fetch('http://localhost:3000/upload', {
-                    method: 'POST',
-                    body: formData
+                const response = await axios.post('http://localhost:3000/upload', formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' }
                 });
-                const result = await response.json();
-                if (response.ok) {
-                    alert(result.message + '\nRecord importati: ' + result.prices);
-                    loadTable(); // aggiorna la tabella
-                } else {
-                    alert('Errore: ' + (result.error || 'Errore sconosciuto'));
+                const result = response.data;
+                let msg = result.message + '\nRecord importati: ' + result.prices;
+                if (result.skipped && result.skipped > 0) {
+                    msg += `\nRecord scartati: ${result.skipped}`;
+                    if (result.skippedDetails && result.skippedDetails.length > 0) {
+                        msg += '\nDettagli scartati:';
+                        result.skippedDetails.forEach(r => {
+                            msg += `\n- Nome: ${r.name || '(vuoto)'} | Prezzo: ${r.price || '(vuoto)'}`;
+                        });
+                    }
                 }
+                alert(msg);
+                loadTable(); // aggiorna la tabella
             } catch (err) {
-                alert('Errore di rete o server non raggiungibile');
+                if (err.response && err.response.data && err.response.data.error) {
+                    alert('Errore: ' + err.response.data.error);
+                } else {
+                    alert('Errore di rete o server non raggiungibile');
+                }
             }
         });
 
-        // Funzione per caricare i dati della tabella price
+        // Funzione per caricare i dati della tabella price con axios
         async function loadTable() {
-            const res = await fetch('/prices');
-            const data = await res.json();
-            const container = document.getElementById('table-container');
-            if (data.length === 0) {
-                container.innerHTML = '<p class="text-muted">Nessun dato presente.</p>';
-                return;
+            try {
+                const res = await axios.get('/prices');
+                const data = res.data;
+                const container = document.getElementById('table-container');
+                if (data.length === 0) {
+                    container.innerHTML = '<p class="text-muted">Nessun dato presente.</p>';
+                    return;
+                }
+                let html = `<table class="table table-striped"><thead><tr><th>Nome</th><th>Prezzo</th></tr></thead><tbody>`;
+                for (const row of data) {
+                    html += `<tr><td>${row.name}</td><td>${row.price}</td></tr>`;
+                }
+                html += '</tbody></table>';
+                container.innerHTML = html;
+            } catch (err) {
+                document.getElementById('table-container').innerHTML = '<p class="text-danger">Errore nel caricamento dati.</p>';
             }
-            let html = `<table class="table table-striped"><thead><tr><th>Nome</th><th>Prezzo</th></tr></thead><tbody>`;
-            for (const row of data) {
-                html += `<tr><td>${row.name}</td><td>${row.price}</td></tr>`;
-            }
-            html += '</tbody></table>';
-            container.innerHTML = html;
         }
         // Carica la tabella all'avvio
         loadTable();
