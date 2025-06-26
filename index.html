@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Import App</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1>CSV Import App</h1>
+        <p>Carica e importa facilmente i tuoi file CSV!<br>
+            Semplifica la gestione dei dati con un solo click.</p>
+        <form id="uploadForm" action="/upload" method="post" enctype="multipart/form-data">
+            <input type="file" id="csvFile" name="file" accept=".csv">
+            <label for="csvFile" class="upload-btn">Scegli il file CSV</label>
+            <br>
+            <button type="submit" class="upload-btn button-margin">Carica</button>
+        </form>
+        <div id="table-container" class="mt-5">
+            <!-- Qui verrà inserita la tabella Bootstrap -->
+        </div>
+    </div>
+    <script>
+        // Mostra il nome del file selezionato (opzionale)
+        const fileInput = document.getElementById('csvFile');
+        const label = document.querySelector('label[for="csvFile"]');
+        fileInput.addEventListener('change', function () {
+            if (fileInput.files.length > 0) {
+                label.textContent = fileInput.files[0].name;
+            } else {
+                label.textContent = 'Scegli il file CSV';
+            }
+        });
+
+        // Gestione invio form via fetch API
+        const form = document.getElementById('uploadForm');
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const formData = new FormData(form);
+            try {
+                const response = await fetch('http://localhost:3000/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+                if (response.ok) {
+                    alert(result.message + '\nRecord importati: ' + result.prices);
+                    loadTable(); // aggiorna la tabella
+                } else {
+                    alert('Errore: ' + (result.error || 'Errore sconosciuto'));
+                }
+            } catch (err) {
+                alert('Errore di rete o server non raggiungibile');
+            }
+        });
+
+        // Funzione per caricare i dati della tabella price
+        async function loadTable() {
+            const res = await fetch('/prices');
+            const data = await res.json();
+            const container = document.getElementById('table-container');
+            if (data.length === 0) {
+                container.innerHTML = '<p class="text-muted">Nessun dato presente.</p>';
+                return;
+            }
+            let html = `<table class="table table-striped"><thead><tr><th>Nome</th><th>Prezzo</th></tr></thead><tbody>`;
+            for (const row of data) {
+                html += `<tr><td>${row.name}</td><td>${row.price}</td></tr>`;
+            }
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+        // Carica la tabella all'avvio
+        loadTable();
+    </script>
+</body>
+
+</html>

@@ -8,6 +8,8 @@ const { createPriceTable, insertPriceRecord } = require('./DB/db');
 const app = express();
 const upload = multer({ dest: 'uploads/' });
 
+// Servi i file statici dalla root (index.html, style.css, ecc.)
+app.use(express.static(path.join(__dirname)));
 
 // Crea la tabella 'price' all'avvio del server
 createPriceTable().then(() => {
@@ -52,6 +54,16 @@ app.post('/upload', upload.single('file'), async (req, res) => {
         .on('error', (err) => {
             res.status(500).json({ error: 'Errore nella lettura del CSV', details: err.message });
         });
+});
+
+// Endpoint per restituire tutti i dati della tabella price
+app.get('/prices', async (req, res) => {
+    try {
+        const [rows] = await require('./DB/db').pool.query('SELECT name, price FROM price');
+        res.json(rows);
+    } catch (err) {
+        res.status(500).json({ error: 'Errore nel recupero dati', details: err.message });
+    }
 });
 
 app.listen(3000, () => {
